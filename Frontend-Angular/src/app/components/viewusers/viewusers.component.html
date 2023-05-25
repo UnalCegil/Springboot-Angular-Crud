@@ -1,0 +1,144 @@
+<div class="mt-5">
+  <h1 class="text-center">View Users</h1>
+  <div class="container">
+    <div class="my-3">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUser">
+        Add User
+      </button>
+    </div>
+    <table class="table border" >
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Address</th>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.pNo}}</td>
+            <td>{{user.address}}</td>
+            <td>
+                <div class="d-inline mx-2">
+                  <button type="button" class="btn btn-warning" data-bs-toggle="modal" (click)="selectUser(user)" data-bs-target="#updateUser">Update</button>
+                </div>
+                <div class="d-inline">
+                  <button class="btn btn-danger" (click)="deleteUser(user.id)" type="button">Delete</button>
+                </div>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+
+    <!-- Dialog Add User -->
+    <div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add User</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="my-12">
+              <div class="mx-auto  " style="max-width:100%;">
+                <form [formGroup]="formAdd" (ngSubmit)="addUser()">
+                  <div class="row">
+                    <div class="col-md-12 form-group mb-12">
+                      <label for="name" class="form-label">Name</label>
+                      <input id="name"  formControlName="name" type="text" name="name" class="form-control" placeholder="Name" required>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 form-group mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input id="email" type="email"  formControlName="email" name="email" class="form-control" placeholder="email" required>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 form-group mb-3">
+                      <label for="pNo" class="form-label">Phone Number</label>
+                      <input id="pNo" type="text" name="pNo"  formControlName="pNo" class="form-control" placeholder="Phone Number" required>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 form-group mb-3">
+                      <label for="Address" class="form-label">Address</label>
+                      <textarea id="Address" type="text" name="address"  formControlName="address" class="form-control" placeholder="New Delhi, India" rows="3" required></textarea>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <input [disabled]="!formAdd.valid" data-bs-dismiss="modal" class="btn btn-primary w-100" type="submit" value="Submit">
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Dialog Update User-->
+    <div class="modal fade" id="updateUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add User</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="my-12">
+              <div class="mx-auto  " style="max-width:100%;">
+                <form [formGroup]="formUpdate" (ngSubmit)="updateUser()">
+
+                  <div class="row">
+                    <div class="col-md-12 form-group mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input id="email" type="email"  formControlName="email" name="email" class="form-control" placeholder="email" required>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 form-group mb-3">
+                      <label for="pNo" class="form-label">Phone Number</label>
+                      <input id="pNo" type="text" name="pNo"  formControlName="pNo" class="form-control" placeholder="Phone Number" required>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 form-group mb-3">
+                      <label for="Address" class="form-label">Address</label>
+                      <textarea id="Address" type="text" name="address"  formControlName="address" class="form-control" placeholder="New Delhi, India" rows="3" required></textarea>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <input [disabled]="!formUpdate.valid" data-bs-dismiss="modal" class="btn btn-primary w-100" type="submit" value="Submit">
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
