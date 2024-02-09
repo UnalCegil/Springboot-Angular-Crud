@@ -22,11 +22,6 @@ public class ClientController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/")
-	public String helloworld() {
-		return "Hello World!";
-	}
-	
 	@PostMapping("/add")
 	public User createUSer(@RequestBody User user) {
 		User u=userService.createUser(user);
@@ -54,7 +49,4 @@ public class ClientController {
 	public User getUserById(@PathVariable("id") long id) {
 		return userService.getUserById(id); 
 	}
-	
-	
-	
 }
